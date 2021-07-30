@@ -1,32 +1,25 @@
-import React, { Component } from 'react';
 import MainContainer from './components/MainContainer';
 import PageHeader from './components/PageHeader';
 import Searchbar from './components/Searchbar';
 import ImageGallery from './components/ImageGallery';
+import { useState } from 'react';
 
-class App extends Component {
-  state = {
-    searchQuery: '',
-    isLoading: false,
+const App = () => {
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const whenSubmit = searchQuery => {
+    setSearchQuery(searchQuery);
   };
 
-  componentDidMount() {}
+  return (
+    <MainContainer>
+      <PageHeader title="React Homework 04. Image Finder" />
 
-  whenSubmit = searchQuery => {
-    this.setState({ searchQuery });
-  };
+      <Searchbar whenSubmit={whenSubmit} />
 
-  render() {
-    return (
-      <MainContainer>
-        <PageHeader title="React Homework 04. Image Finder" />
-
-        <Searchbar whenSubmit={this.whenSubmit} />
-
-        <ImageGallery searchQuery={this.state.searchQuery}></ImageGallery>
-      </MainContainer>
-    );
-  }
-}
+      <ImageGallery searchQuery={searchQuery}></ImageGallery>
+    </MainContainer>
+  );
+};
 
 export default App;

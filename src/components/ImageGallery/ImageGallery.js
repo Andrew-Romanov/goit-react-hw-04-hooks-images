@@ -16,33 +16,22 @@ const ImageGallery = ({ searchQuery }) => {
   const [src, setSrc] = useState('');
   const [alt, setAlt] = useState('');
 
-  // state = {
-  //   pictures: [],
-  //   pageNumber: 1,
-  //   isLoading: false,
-  //   isModalOpen: false,
-  //   needToScroll: false,
-  // };
-
-  // modalData = {
-  //   src: '',
-  //   alt: '',
-  // };
-
   useEffect(() => {
     if (searchQuery !== '') {
-      console.log('First render');
+      // console.log('First render');
       setPictures([]);
       setPageNumber(1);
       fetchImages();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchQuery]);
 
   useEffect(() => {
     if (pageNumber > 1) {
-      console.log('Next render');
+      // console.log('Next render');
       fetchImages();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pageNumber]);
 
   useEffect(() => {
@@ -51,20 +40,6 @@ const ImageGallery = ({ searchQuery }) => {
       setNeedToScroll(false);
     }
   }, [needToScroll]);
-
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (prevProps.searchQuery !== this.props.searchQuery) {
-  //     this.setState({ pictures: [], pageNumber: 1 });
-  //     this.fetchImages();
-  //   } else if (prevState.pageNumber < this.state.pageNumber) {
-  //     this.fetchImages();
-  //   }
-
-  //   if (needToScroll) {
-  //     scrollToBottom();
-  //     setNeedToScroll(false);
-  //   };
-  // };
 
   const scrollToBottom = () => {
     window.scrollTo({
